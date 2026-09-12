@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI Engineering Skills Map — A Student's Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-tertiary: #f1f5f9;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-tertiary: #94a3b8;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --accent-bg: #eef2ff;
+            --accent-border: #c7d2fe;
+            --border: #e2e8f0;
+            --border-light: #f1f5f9;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --nav-text: #334155;
+            --nav-hover: #6366f1;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.08);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.1);
+            --callout-bg: #fffbeb;
+            --callout-border: #fbbf24;
+            --callout-text: #92400e;
+            --success-bg: #f0fdf4;
+            --success-border: #4ade80;
+            --success-text: #166534;
+            --info-bg: #eff6ff;
+            --info-border: #60a5fa;
+            --info-text: #1e40af;
+            --gradient-start: #6366f1;
+            --gradient-end: #8b5cf6;
+            --footer-bg: #0f172a;
+            --footer-text: #cbd5e1;
+            --code-bg: #f1f5f9;
+            --reading-max-width: 900px;
+            --transition-speed: 0.35s;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-tertiary: #334155;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-tertiary: #64748b;
+            --accent: #818cf8;
+            --accent-light: #a5b4fc;
+            --accent-bg: rgba(99, 102, 241, 0.15);
+            --accent-border: rgba(99, 102, 241, 0.3);
+            --border: #334155;
+            --border-light: #1e293b;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --nav-text: #cbd5e1;
+            --nav-hover: #818cf8;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.5);
+            --callout-bg: rgba(251, 191, 36, 0.1);
+            --callout-border: #f59e0b;
+            --callout-text: #fbbf24;
+            --success-bg: rgba(74, 222, 128, 0.1);
+            --success-border: #22c55e;
+            --success-text: #4ade80;
+            --info-bg: rgba(96, 165, 250, 0.1);
+            --info-border: #3b82f6;
+            --info-text: #60a5fa;
+            --footer-bg: #020617;
+            --footer-text: #64748b;
+            --code-bg: #334155;
+        }
+
+        [data-reading="comfort"] {
+            --reading-max-width: 680px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background-color: var(--bg-secondary);
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ==================== TOP BAR ==================== */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 52px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .top-bar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .top-bar-brand svg {
+            width: 24px;
+            height: 24px;
+            fill: var(--accent);
+        }
+
+        .top-bar-controls {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .control-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 14px;
+            border: 1px solid var(--border);
+            border-radius: 9999px;
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            font-weight: 500;
+            font-family: inherit;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .control-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-bg);
+        }
+
+        .control-btn.active {
+            border-color: var(--accent);
+            background: var(--accent-bg);
+            color: var(--accent);
+        }
+
+        .control-btn svg {
+            width: 15px;
+            height: 15px;
+            flex-shrink: 0;
+        }
+
+        /* ==================== HERO ==================== */
+        .hero {
+            margin-top: 52px;
+            position: relative;
+            height: 55vh;
+            min-height: 380px;
+            max-height: 520px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .hero-image {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 23, 42, 0) 0%,
+                rgba(15, 23, 42, 0.4) 50%,
+                rgba(15, 23, 42, 0.85) 100%
+            );
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 32px 48px;
+            width: 100%;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #c7d2fe;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            backdrop-filter: blur(8px);
+        }
+
+        .hero h1 {
+            font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            max-width: 700px;
+        }
+
+        .hero-subtitle {
+            margin-top: 14px;
+            font-size: 1.05rem;
+            color: #cbd5e1;
+            max-width: 560px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* ==================== STICKY NAV ==================== */
+        .section-nav {
+            position: sticky;
+            top: 52px;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all var(--transition-speed) ease;
+        }
+
+        .section-nav-inner {
+            max-width: var(--reading-max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            gap: 4px;
+            overflow-x: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .section-nav-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+        .section-nav a {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 12px 16px;
+            color: var(--nav-text);
+            text-decoration: none;
+            font-size: 0.82rem;
+            font-weight: 500;
+            white-space: nowrap;
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s ease;
+            position: relative;
+        }
+
+        .section-nav a:hover {
+            color: var(--nav-hover);
+        }
+
+        .section-nav a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .nav-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--bg-tertiary);
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--text-tertiary);
+            transition: all 0.25s ease;
+        }
+
+        .section-nav a.active .nav-number,
+        .section-nav a:hover .nav-number {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* ==================== PROGRESS BAR ==================== */
+        .progress-bar {
+            position: fixed;
+            top: 52px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            z-index: 3000;
+            width: 0%;
+            transition: width 0.1s linear;
+            border-radius: 0 2px 2px 0;
+        }
+
+        /* ==================== MAIN CONTENT ==================== */
+        .content-wrapper {
+            max-width: var(--reading-max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+            transition: max-width 0.4s ease;
+        }
+
+        main {
+            padding: 0 0 60px;
+        }
+
+        .article-section {
+            padding: 56px 0 48px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .article-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-number {
+            display: inline-block;
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 800;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            transition: color var(--transition-speed) ease;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 40px;
+            margin-bottom: 14px;
+            letter-spacing: -0.01em;
+            transition: color var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h3::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        p {
+            margin-bottom: 18px;
+            font-size: 1.02rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            transition: color var(--transition-speed) ease;
+        }
+
+        [data-reading="comfort"] p {
+            font-size: 1.08rem;
+            line-height: 1.9;
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* ==================== LISTS ==================== */
+        .skill-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 24px;
+            display: grid;
+            gap: 8px;
+        }
+
+        .skill-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 18px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            font-size: 0.98rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+            transition: all 0.25s ease;
+        }
+
+        .skill-list li:hover {
+            border-color: var(--accent-border);
+            background: var(--accent-bg);
+            transform: translateX(4px);
+        }
+
+        .skill-list li::before {
+            content: '';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            background: var(--accent-bg);
+            border: 1.5px solid var(--accent-border);
+            margin-top: 1px;
+            position: relative;
+        }
+
+        .skill-list li::after {
+            content: '✓';
+            position: absolute;
+            color: var(--accent);
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        .skill-list li {
+            position: relative;
+        }
+
+        /* Fix for the checkmark */
+        .skill-list li .check-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 50%;
+            background: var(--accent-bg);
+            border: 1.5px solid var(--accent-border);
+        }
+
+        .skill-list li .check-icon svg {
+            width: 12px;
+            height: 12px;
+            stroke: var(--accent);
+        }
+
+        .skill-list li::before,
+        .skill-list li::after {
+            display: none;
+        }
+
+        /* ==================== CALLOUT BOXES ==================== */
+        .callout {
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin: 24px 0;
+            border-left: 4px solid;
+            font-size: 0.95rem;
+        }
+
+        .callout-note {
+            background: var(--callout-bg);
+            border-color: var(--callout-border);
+            color: var(--callout-text);
+        }
+
+        .callout-info {
+            background: var(--info-bg);
+            border-color: var(--info-border);
+            color: var(--info-text);
+        }
+
+        .callout-success {
+            background: var(--success-bg);
+            border-color: var(--success-border);
+            color: var(--success-text);
+        }
+
+        .callout-title {
+            font-weight: 700;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .callout p {
+            color: inherit;
+            margin-bottom: 0;
+            font-size: inherit;
+        }
+
+        /* ==================== KEY TAKEAWAY CARD ==================== */
+        .takeaway-card {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            color: #fff;
+        }
+
+        .takeaway-card h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.85;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .takeaway-card p {
+            color: rgba(255,255,255,0.95);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* ==================== FOOTER ==================== */
+        footer {
+            background: var(--footer-bg);
+            color: var(--footer-text);
+            padding: 60px 24px 40px;
+            text-align: center;
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .footer-inner {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        footer h2 {
+            color: #f1f5f9;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 0.98rem;
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+
+        .footer-divider {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 3px;
+            margin: 30px auto;
+        }
+
+        .footer-copy {
+            font-size: 0.82rem !important;
+            color: #475569 !important;
+            margin-top: 20px;
+        }
+
+        /* ==================== BACK TO TOP ==================== */
+        .back-to-top {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.3s ease;
+            z-index: 900;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .back-to-top svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ==================== ESTIMATED READ TIME ==================== */
+        .meta-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.82rem;
+            color: #94a3b8;
+        }
+
+        .meta-tag svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+
+        /* ==================== TABLE OF CONTENTS (Mobile drawer) ==================== */
+        .toc-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 4000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .toc-overlay.open {
+            opacity: 1;
+        }
+
+        .toc-drawer {
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            max-width: 85vw;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 4001;
+            transition: right 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            padding: 24px;
+            overflow-y: auto;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .toc-drawer.open {
+            right: 0;
+        }
+
+        .toc-drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .toc-drawer-header h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .toc-drawer-header h3::before {
+            display: none;
+        }
+
+        .toc-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .toc-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .toc-list a {
+            display: block;
+            padding: 10px 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.88rem;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin-bottom: 4px;
+        }
+
+        .toc-list a:hover,
+        .toc-list a.active {
+            background: var(--accent-bg);
+            color: var(--accent);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 768px) {
+            html {
+                scroll-padding-top: 110px;
+            }
+
+            .hero {
+                height: 45vh;
+                min-height: 300px;
+            }
+
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.92rem;
+            }
+
+            .hero-content {
+                padding: 0 20px 36px;
+            }
+
+            .section-nav a {
+                padding: 10px 12px;
+                font-size: 0.76rem;
+            }
+
+            .article-section {
+                padding: 40px 0 36px;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            h3 {
+                font-size: 1.08rem;
+            }
+
+            .top-bar {
+                padding: 0 16px;
+            }
+
+            .control-btn span {
+                display: none;
+            }
+
+            .control-btn {
+                padding: 6px 10px;
+            }
+
+            .content-wrapper {
+                padding: 0 16px;
+            }
+
+            .takeaway-card {
+                padding: 24px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section-nav-inner {
+                gap: 2px;
+            }
+
+            .section-nav a .nav-label {
+                display: none;
+            }
+        }
+
+        /* ==================== SMOOTH ANIMATIONS ==================== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .article-section {
+            animation: fadeInUp 0.6s ease both;
+        }
+
+        .article-section:nth-child(2) { animation-delay: 0.1s; }
+        .article-section:nth-child(3) { animation-delay: 0.15s; }
+        .article-section:nth-child(4) { animation-delay: 0.2s; }
+        .article-section:nth-child(5) { animation-delay: 0.25s; }
+
+        /* Focus styles for accessibility */
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+            .top-bar, .section-nav, .progress-bar, .back-to-top {
+                display: none !important;
+            }
+            .hero { height: auto; min-height: 0; }
+            body { background: #fff; }
+            .content-wrapper { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <a href="#" class="top-bar-brand">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" style="stroke: var(--accent);"/>
+            </svg>
+            AI Skills Map
+        </a>
+        <div class="top-bar-controls">
+            <button class="control-btn" id="readingModeBtn" onclick="toggleReadingMode()" title="Comfort Reading Mode">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                <span>Reading Mode</span>
+            </button>
+            <button class="control-btn" id="darkModeBtn" onclick="toggleTheme()" title="Toggle Dark Mode">
+                <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+                <span id="themeLabel">Dark</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1600&auto=format&fit=crop" alt="AI Engineering Concept — Neural network visualization representing artificial intelligence and modern software engineering.">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">📘 Complete Guide</div>
+            <h1>The AI Engineering Skills Map: A Guide for Modern Developers</h1>
+            <p class="hero-subtitle">Everything you need to know about the skills that'll define the next generation of software builders.</p>
+            <div class="meta-info">
+                <span class="meta-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    25 min read
+                </span>
+                <span class="meta-tag">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    Based on the original writings by Andrew Ng
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Navigation -->
+    <nav class="section-nav" id="sectionNav">
+        <div class="section-nav-inner">
+            <a href="#sec1" class="active"><span class="nav-number">1</span><span class="nav-label">AI Engineering</span></a>
+            <a href="#sec2"><span class="nav-number">2</span><span class="nav-label">Building & Deploying</span></a>
+            <a href="#sec3"><span class="nav-number">3</span><span class="nav-label">SE Fundamentals</span></a>
+            <a href="#sec4"><span class="nav-number">4</span><span class="nav-label">Coding Agents</span></a>
+            <a href="#sec5"><span class="nav-number">5</span><span class="nav-label">Shaping the Build</span></a>
+        </div>
+    </nav>
+
+    <!-- Table of Contents Drawer (Mobile) -->
+    <div class="toc-overlay" id="tocOverlay" onclick="closeToc()"></div>
+    <div class="toc-drawer" id="tocDrawer">
+        <div class="toc-drawer-header">
+            <h3>Contents</h3>
+            <button class="toc-close" onclick="closeToc()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+        <ul class="toc-list">
+            <li><a href="#sec1" onclick="closeToc()">1. AI Engineering — The Big Picture</a></li>
+            <li><a href="#sec2" onclick="closeToc()">2. Building & Deploying AI Applications</a></li>
+            <li><a href="#sec3" onclick="closeToc()">3. Software Engineering Fundamentals</a></li>
+            <li><a href="#sec4" onclick="closeToc()">4. Using Coding Agents</a></li>
+            <li><a href="#sec5" onclick="closeToc()">5. Shaping the Build</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content-wrapper">
+        <main>
+            <!-- Section 1 -->
+            <section class="article-section" id="sec1">
+                <div class="section-header">
+                    <span class="section-number">Part 1 of 5</span>
+                    <h2>AI Engineering — The Big Picture</h2>
+                </div>
+
+                <p>Welcome to <strong>The AI Engineering Skills Map</strong>. If you're a student right now — whether you're doing your B.Tech, pursuing a master's, or just starting to explore the world of software — you've probably noticed something: <strong>AI has fundamentally changed how software gets built</strong>. What was standard practice in 2022 already feels outdated.</p>
+
+                <p>The good news? If you pick up the right skills, a world of exciting projects and career opportunities opens up. The bad news? The internet is flooded with hype, noise, and contradictory advice about what to actually learn. That's exactly why this skills map exists.</p>
+
+                <p>This map was created by studying <strong>over 10,000 job postings</strong>, conducting dozens of structured interviews with AI experts, hiring managers, and recruiters, gathering data through surveys, and synthesising countless online resources. The result? <strong>Four core AI engineering skills</strong> that matter most:</p>
+
+                <ul class="skill-list">
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Building and deploying AI applications</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Software engineering fundamentals</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Using coding agents</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Shaping the build</li>
+                </ul>
+
+                <p>Think of this process like running a clustering algorithm on a massive dataset of jobs and expert interviews — except the goal is to surface the skills that matter most, not just today, but in the near future.</p>
+
+                <div class="callout callout-note">
+                    <div class="callout-title">💡 A Quick Note on Terminology</div>
+                    <p>We talk about <strong>AI Engineering skills</strong> rather than the "AI Engineer" role. Why? Because these skills aren't just for people with "AI Engineer" in their title. Think of it this way: every developer today should know how to work with the cloud, but not everyone has a "Cloud Engineer" title. Similarly, whether you end up as a full-stack developer, data engineer, DevOps engineer, or ML engineer — you'll need AI engineering skills.</p>
+                </div>
+
+                <h3>Building and Deploying AI Applications</h3>
+                <p>Here's the fundamental difference between AI-powered and traditional software: <strong>AI outputs are unpredictable</strong>. When you prompt an LLM, you don't know exactly what it'll return. When you train a deep learning model, you can't be certain what it'll predict on new data. Traditional software, on the other hand, is deterministic — given the same input, it produces the same output, every time.</p>
+
+                <p>Skilled AI engineers understand the core building blocks — LLMs, context engineering, RAG, agentic workflows, machine learning and deep learning — and, crucially, they know how to use <strong>statistical techniques to measure, steer, and govern</strong> AI systems so they behave more predictably. At the heart of this is a disciplined approach to evaluations (evals) and error analysis.</p>
+
+                <h3>Software Engineering Fundamentals</h3>
+                <p>When you deeply understand how software actually works, you build far more effectively. Engineering software always involves trade-offs — between cost, scalability, reliability, speed, and more. Security and privacy add further complexity.</p>
+
+                <p>Understanding these fundamentals helps you <strong>recognise what trade-offs even exist</strong>. This leads to better decisions in choosing your tech stack, designing system architecture, selecting data stores, writing tests, and much more. It also produces far better results than just "vibe coding" — where you let a coding agent generate a solution without understanding the trade-offs it's making (which are often poor ones, because it doesn't have the context you do).</p>
+
+                <h3>Using Coding Agents</h3>
+                <p>Using agentic coding effectively is now an essential skill for every developer. When you have this skill, you have a solid mental model of how agents work — their capabilities, their limitations, and how to steer them. You know <strong>how much to intervene and how much to let them run</strong>, so you can build robust software without burning excessive time or tokens.</p>
+
+                <p>This means knowing how to manage an agent's context, balance planning with execution, help it autonomously close loops by providing verifiers or evals, work with clear specs (and know when not to bother), orchestrate multiple agents together, and avoid pitfalls — like the risk of an agent accidentally wrecking your production database. Because this field moves fast, staying sharp means constantly experimenting with new tools and evolving your workflows.</p>
+
+                <h3>Shaping the Build</h3>
+                <p>As coding agents get better at delivering to a spec, <strong>our work as engineers is shifting towards deciding what should be in the spec</strong>. Engineers can no longer expect to just receive a pixel-perfect design and implement it. Instead, effective AI engineering requires product sense — understanding the business context and customer goals so you can actively participate in driving the project.</p>
+
+                <p>AI also gives you the chance to take on <strong>greater ownership and agency</strong> than ever before. You can identify interesting problems, spot opportunities, and execute on them responsibly. This requires knowing when to quickly build an MVP for user testing, and when to slow down and build more carefully.</p>
+
+                <div class="takeaway-card">
+                    <h4>🎯 Key Takeaway</h4>
+                    <p>Underlying all these skills is a mindset of <strong>continuous learning</strong>. AI continues to change at a breakneck pace, so keeping up with emerging best practices isn't optional — it's essential. Every new skill you pick up compounds over time and makes you a more effective, more versatile engineer.</p>
+                </div>
+            </section>
+
+            <!-- Section 2 -->
+            <section class="article-section" id="sec2">
+                <div class="section-header">
+                    <span class="section-number">Part 2 of 5</span>
+                    <h2>Building and Deploying AI Applications</h2>
+                </div>
+
+                <p>Let's dive deeper into the first (and arguably most fundamental) AI engineering skill. Being good at building and deploying AI applications means knowing these six areas:</p>
+
+                <ul class="skill-list">
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>LLM foundations</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Grounding models with data</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Building agentic systems</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Evaluation-driven development</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Operating in production</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Machine learning foundations</li>
+                </ul>
+
+                <p>Remember the key difference: AI outputs are unpredictable. You can't plan the development process as neatly as you would with traditional software. Building AI systems is an <strong>inherently iterative process</strong> — you build something, examine it, and decide what to try next. Skilled AI engineers make each iteration count by methodically deciding what direction is most likely to be fruitful.</p>
+
+                <h3>LLM Foundations</h3>
+                <p>Understanding how large language models tokenize input and generate output is foundational. It helps you figure out <strong>when you can rely on them and when they're likely to fail</strong>. It also enables you to make informed choices about multimodal models, what to include in the context window, cache hits, knowledge cutoffs, reasoning effort levels, sampling parameters, tool calling, and more.</p>
+
+                <p>This foundational knowledge helps you choose the right model (or mix of models) for the job and apply specialised techniques like fine-tuning or self-hosting when necessary.</p>
+
+                <h3>Grounding Models with Data</h3>
+                <p>LLMs need good input context to produce useful outputs. <strong>RAG (Retrieval-Augmented Generation)</strong> using vector search was an early approach, but the techniques for grounding models have expanded enormously. You'll need to decide what goes directly into a prompt versus what the LLM should retrieve on-demand using tools, and what representation best fits your data — a vector index, a knowledge graph, or a semantic layer over structured data (like customer records).</p>
+
+                <p>You'll also learn to convert documents (text, PDFs, HTML, images) into LLM-ready inputs and build pipelines that keep data clean and fresh. The more techniques you master for grounding your model, the better context you can provide — and better context means better results.</p>
+
+                <h3>Building Agentic Systems</h3>
+                <p>Agentic systems span a wide range: from workflows that execute a predefined sequence of LLM calls, to agent harnesses that let an LLM <strong>repeatedly decide its own next step</strong>. You'll need to choose the architecture — which steps to chain, which to parallelise, when to use code and when to use an LLM — and design the workflow with proper fallbacks.</p>
+
+                <p>For the agent loop, you'll decide on tools (including MCP, CLI, and sandbox execution environments), memory architecture, context management over long sessions, and whether a task needs multi-agent orchestration or a single-agent setup. And when it's time for production? You'll need to understand guardrails, adversarial inputs, data exfiltration risks, and governance.</p>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">🔄 Rapid Evolution Alert</div>
+                    <p>Agentic workflows are evolving at a blistering pace. Stay on top of cutting-edge techniques relevant to your area — whether that's voice agents, computer-use agents, or generative UI.</p>
+                </div>
+
+                <h3>Evaluation-Driven Development</h3>
+                <p>If there's one skill that separates good AI engineers from great ones, <strong>it's the ability to run a disciplined evals and error analysis loop</strong>. This is the practice of repeatedly evaluating your system, analysing where it fails, and focusing your efforts on the most impactful improvements.</p>
+
+                <p>Building good evals is a deep technical skill. You might trace a system's outputs, do exploratory data analysis, and combine that with product insight to decide what to measure. You should understand when to use code-based (deterministic) evaluations, when to use an LLM-as-a-judge, and when to bring a human into the loop — and, importantly, how to evaluate your evals themselves so they keep improving over time.</p>
+
+                <h3>Operating in Production</h3>
+                <p>Operating AI software is different from traditional software because of its <strong>unpredictability, cost, and latency</strong>. You need observability mechanisms to understand how the system performs on real-world usage. You'll track performance, detect drift, and respond quickly to model failures and security incidents like adversarial prompt injections.</p>
+
+                <p>Regression testing and CI/CD for AI systems require more statistical rigour than traditional software. Testing effort should be calibrated to the risk of a mistake. And optimising cost and latency — through model selection, distillation, fine-tuning, and agentic workflow simplification — becomes critical as your application scales.</p>
+
+                <h3>Machine Learning Foundations</h3>
+                <p>Modern LLMs are built on machine learning techniques, including supervised learning and reinforcement learning. <strong>Every strong AI engineer also understands ML and deep learning</strong> at some depth. Many applications still require you to use ML models — either ones you train yourself or ones someone else built.</p>
+
+                <p>The core ML concepts — bias/variance trade-offs, error analysis, data engineering — are fundamental mental frameworks for working with systems that produce uncertain outputs. These concepts help you make better decisions across the entire AI development lifecycle.</p>
+
+                <div class="takeaway-card">
+                    <h4>🎯 Key Takeaway</h4>
+                    <p>There's a lot to learn here, and that's actually a good thing — it means this field has <strong>real technical depth</strong>. Every new concept you master makes you measurably better at AI Engineering. And a strong complement to all of this? Software engineering fundamentals — which we'll cover next.</p>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section class="article-section" id="sec3">
+                <div class="section-header">
+                    <span class="section-number">Part 3 of 5</span>
+                    <h2>Software Engineering Fundamentals</h2>
+                </div>
+
+                <p>Here's a question that comes up a lot: <em>"If coding agents write all my code, do I still need to understand software engineering?"</em></p>
+
+                <p><strong>Absolutely yes.</strong> Even when an agent writes every line of code, understanding software fundamentals is essential for steering it to make the trade-offs you actually want — or even to know what trade-offs exist in the first place. When you build an AI application, the AI core usually lives inside a broader software system, and you need to help build or shape that system.</p>
+
+                <p>A beginner who vibe-codes without understanding fundamentals can create simple apps, sure. But the coding agent will likely make poor trade-offs in latency, availability, consistency, reliability, maintainability, simplicity, and cost. The developer didn't know those trade-offs existed, so they couldn't steer the agent to make the right calls.</p>
+
+                <p>Here are the most important areas within software engineering fundamentals:</p>
+
+                <ul class="skill-list">
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Building full-stack applications</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Managing data</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Designing system architectures</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Making systems secure and reliable</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Scaling and operating in production</li>
+                </ul>
+
+                <h3>Building Full-Stack Applications</h3>
+                <p>Agentic coding is enabling many developers who used to specialise (say, in front-end or mobile development) to play a broader, <strong>full-stack role</strong>. A coding agent can help with the parts of the stack you're less familiar with. But understanding how the full stack actually works remains crucial.</p>
+
+                <p>Skilled developers understand the key components and concepts across both front-end and back-end: UI components, caching, page rendering, API choice and design, authentication, state and session management, asynchronous processing, data persistence, testing, security, and accessibility.</p>
+
+                <h3>Managing Data</h3>
+                <p>Data deserves special attention because it's the <strong>foundation everything else is built on</strong> — and it's relatively hard to change, even with agents helping with migrations.</p>
+
+                <p>When you know how to manage data, you can think through access patterns and use them to decide what to store (and for how long). You can pick the right data models and storage types — relational tables, documents, key-value stores, graphs — and understand how each choice affects speed, scalability, availability, reliability, and cost. You understand transactions, concurrency, and how to keep data clean, consistent, and fresh.</p>
+
+                <p>Here's the thing: your AI systems get their input context from your data sources. If your data architecture is poorly designed, <strong>the AI doesn't know what it doesn't know</strong>. This is why it takes skilled human intervention — from someone with the relevant context — to set things right.</p>
+
+                <h3>Designing System Architectures</h3>
+                <p>When you understand the major components of the full stack, you're better positioned to decide how to put the pieces together. Good system design requires understanding <strong>what the software is meant to do</strong>: How many users? How important is latency? What about cost?</p>
+
+                <p>Based on those answers, you make choices about the application platform, the boundary between front-end and back-end, system decomposition, state placement, and architectural granularity (monolith vs. microservices). You'll also choose the tech stack — languages, runtimes, frameworks, data technologies — sometimes running experiments before settling on a decision.</p>
+
+                <div class="callout callout-note">
+                    <div class="callout-title">💡 Architecture Is a Moving Target</div>
+                    <p>The right architecture depends on the project's phase. The simple setup you choose for a quick prototype might not work for your first production system, and that production architecture may need to evolve as you scale. Making these decisions requires deep knowledge of both software components and application context.</p>
+                </div>
+
+                <h3>Making Systems Secure and Reliable</h3>
+                <p>To build reliable systems, you need solid testing strategies: what mix of unit tests and integration tests to use, which frameworks, and what level of coverage. You also need to <strong>design around possible failures</strong> — how to handle them (like an API hitting a rate limit), build in graceful degradation, and minimise blast radius.</p>
+
+                <p>There's also the "shift left" movement, which pushes security work earlier in the development lifecycle. Just as all developers are moving towards full-stack roles, many are now partly security engineers too. AI tools can scan code for vulnerabilities, check dependencies for supply-chain attacks, and examine cloud configurations for attack surfaces — but doing this well still requires foundational security knowledge.</p>
+
+                <h3>Scaling and Operating in Production</h3>
+                <p>To serve real users, you need to know how to deploy to production. That means understanding the <strong>software development lifecycle (SDLC)</strong>: configuring deployment environments, deciding on release strategies, setting up CI/CD, and understanding Infrastructure as a Service (IaaS).</p>
+
+                <p>Operating in production requires observability tools, alerts, and incident management. To scale, you should understand real load patterns and know how to scale servers, load-balance, and adapt data infrastructure (sharding, indexing, replication). And coding best practices — version control, code reviews, dependency maintenance, managing technical debt — help you keep evolving your system over time.</p>
+
+                <div class="takeaway-card">
+                    <h4>🎯 Key Takeaway</h4>
+                    <p>Coding agents have transformed how we build software, but <strong>developers who deeply understand how software works vastly outperform those who vibe-code without understanding</strong>. Some knowledge (like memorising syntax) is becoming obsolete. But understanding fundamentals? That's more important than ever — and it's the foundation for using coding agents effectively.</p>
+                </div>
+            </section>
+
+            <!-- Section 4 -->
+            <section class="article-section" id="sec4">
+                <div class="section-header">
+                    <span class="section-number">Part 4 of 5</span>
+                    <h2>Using Coding Agents</h2>
+                </div>
+
+                <p>A core AI engineering skill is using coding agents — not just to write code, but also for non-code tasks like analysing data or managing system operations. Your ability to steer them effectively lets you get <strong>dramatically more done</strong>.</p>
+
+                <p>Coding agents are evolving faster than almost any other area in AI. Proprietary tools (like Claude Code, Codex, and Cursor) and open-source options (like OpenCode and Pi) improve rapidly via both harness and model upgrades. Staying effective means adopting a <strong>continuous process of experimentation, building, and learning</strong>.</p>
+
+                <p>After interviewing dozens of top AI engineers and reflecting on real-world team experiences, a consistent high-level workflow for building software with coding agents emerged:</p>
+
+                <p><strong>1. Planning.</strong> This involves brainstorming (which may include research, experimentation, and understanding the existing codebase), writing a spec that captures requirements, technical design, and architecture, and then generating an execution plan. You might also review the plan to check for security issues, over-engineering, and key assumptions.</p>
+
+                <p><strong>2. Execution.</strong> Here, you build, test, and verify — striking the right balance between agent autonomy and human oversight. The agent builds the software with a calibrated level of independence, and you verify its output through automated and/or human checks.</p>
+
+                <p><strong>3. Deployment and Monitoring.</strong> You deploy (possibly gated by CI/CD or human review) and use agents to watch logs, surface issues, and propose improvements.</p>
+
+                <div class="callout callout-info">
+                    <div class="callout-title">🔑 What's Changed?</div>
+                    <p>This workflow is similar to traditional software development — but the focus has shifted. We spend <strong>much less time on code</strong> and much more time on deciding what to build, designing the architecture, writing the spec, and verifying outputs.</p>
+                </div>
+
+                <p>The scope of each step varies hugely between projects, and steps can be skipped entirely. A greenfield prototype might have a spec that's just a quickly-written prompt, while a brownfield project with many users might need extensive spec work. The process is also highly iterative — skilled developers know when to loop back to an earlier step based on feedback.</p>
+
+                <p>The key skills for using coding agents effectively are:</p>
+
+                <ul class="skill-list">
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Directing the workflow</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Enabling agent autonomy</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Reviewing the work</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Customising the agent and its environment</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Coding agent foundations</li>
+                </ul>
+
+                <h3>Directing the Workflow</h3>
+                <p>You know how to navigate each step of the workflow. This involves deciding how much human effort and how much agent effort to invest in each stage, and when to loop back for another iteration. It requires deeply understanding the trade-offs between <strong>speed, cost, technical risk, and human effort</strong>, so you can decide how much research and planning to do upfront, when to retain human ownership over critical work, how to choose the architecture, how much detail to write into planning artefacts (like a spec), and how to decompose work into verifiable steps.</p>
+
+                <h3>Enabling Agent Autonomy</h3>
+                <p>When using a coding agent, you choose the autonomy level: Do you watch it closely and go back-and-forth interactively, or do you delegate a larger chunk of work? When do you set a clear goal and let it loop until it succeeds?</p>
+
+                <p>You also manage the agent's context carefully. As the build moves through different phases, you'll decide when to capture key learnings, user feedback, and assumptions — <strong>including assumptions that changed mid-build</strong> — for the agent to use downstream. You'll determine when to spin up multiple parallel agents, how to orchestrate them, and how to manage human attention across concurrent sessions. And you know how to run agents safely, setting permissions and gating actions to let development proceed quickly while limiting risk.</p>
+
+                <h3>Reviewing the Work</h3>
+                <p>Since coding agent output is uncertain, <strong>reviewing and verifying is a critical step</strong>. You design testing and validation matched to the task, applying both behavioural and functional verification. You might test user flows (perhaps having an agent provide screenshots as evidence) or use eval sets with LLM-as-a-judge for qualitative assessment.</p>
+
+                <p>You also decide how much testing to automate. Some workflows have fully automated validation so the agent can check its own work. You evaluate the tests themselves to make sure they align with your goals. Plus, you use agentic code review and AI-enabled security audits. When AI review isn't enough, you judiciously insert human reviews of code behaviour — while always looking for ways to automate this further.</p>
+
+                <h3>Customising the Agent and Its Environment</h3>
+                <p>Your ability to customise both the agent and its working environment lets agents efficiently access the context they need, use the right tools, and build correctly. You know how to integrate agent skills, plugins, and MCP servers. You can use <strong>hooks to automate repeatable parts</strong> of the development process — like triggering code reviews or CI/CD pipelines.</p>
+
+                <p>You also maintain the agent's environment: updating standing context files (like <code>AGENTS.md</code> or <code>CLAUDE.md</code>) with codebase info, architectural decisions, code style, and data access patterns. You preserve state across sessions and parallel agents, accumulate learnings over time, and set up consistent conventions that make your codebase navigable to the agent.</p>
+
+                <h3>Coding Agent Foundations</h3>
+                <p>To make good decisions throughout the process, you need a solid understanding of <strong>how coding agents actually work</strong>: how they search and retrieve code, manage context windows, handle tool calls and MCP servers, and how agents and sub-agents interact. This knowledge makes the agent less of a black box.</p>
+
+                <p>It helps you recognise failure modes — like over-engineering, losing rigour, stopping short of goals, or risky actions that could destroy files or production data. It lets you reason about the agent's state and steer it with the right context. And when monitoring a run, it helps you spot when things go off-track and intervene effectively.</p>
+
+                <div class="callout callout-note">
+                    <div class="callout-title">⚠️ A Reality Check</div>
+                    <p>Social media often oversimplifies how to use coding agents. Yes, it's sometimes useful to let agents run autonomously for hours, burning millions of tokens. But the practical utility of very long-horizon tasks — especially relative to their cost — is often <strong>amplified beyond reality</strong>. In practice, most effective coding agent use is a complex, highly iterative process where skilled human judgement makes all the difference.</p>
+                </div>
+
+                <div class="takeaway-card">
+                    <h4>🎯 Key Takeaway</h4>
+                    <p>Your skill with coding agents makes you an effective builder. But the real superpower comes from combining this with the ability to <strong>steer the overall build</strong> — deciding what to build, not just how to build it. That's what we'll cover next.</p>
+                </div>
+            </section>
+
+            <!-- Section 5 -->
+            <section class="article-section" id="sec5">
+                <div class="section-header">
+                    <span class="section-number">Part 5 of 5</span>
+                    <h2>Shaping the Build</h2>
+                </div>
+
+                <p>When you're skilled at AI Engineering, your best work won't be merely implementing a product that someone else designed. Instead, you'll <strong>actively shape what gets built</strong>.</p>
+
+                <p>Before modern AI tools, tech companies had a clear division: product managers (PMs) and designers specified what to build, and developers built it. Maybe a project manager drove the timeline. But these boundaries are blurring fast. An AI-skilled developer doesn't just write code — they participate in product decisions, design, and project direction. (And PMs and designers are gaining AI Engineering skills and participating in building software too.)</p>
+
+                <p>This shift is <strong>massively accelerating software development</strong>. When you know how to shape the build, you can move fast without waiting around for a PM to figure things out.</p>
+
+                <p>The key skills for shaping the build are:</p>
+
+                <ul class="skill-list">
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Driving the build loop</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Making product decisions</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>Communicating and leading</li>
+                    <li><span class="check-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>High-agency ownership</li>
+                </ul>
+
+                <h3>Driving the Build Loop</h3>
+                <p>Most software is built via a loop: write some code, get feedback, decide what's next. As a skilled AI engineer, you play a central role in driving this loop — <strong>repeatedly making the call on the next step</strong> to move your project forward. You have a bias for action, and you drive this loop at the high velocity that AI has made possible.</p>
+
+                <p>For instance, you might decide to build a quick prototype to test a technical concept, create an MVP to demonstrate value to users, add features, or invest in an enterprise-grade system. You ship in small batches to maintain velocity. You know when to gather user feedback, when to run a technical experiment, and when to just keep building. These decisions account for the product vision, project phase, technical feasibility, risks, effort, and budget.</p>
+
+                <h3>Making Product Decisions</h3>
+                <p>You don't have to become a PM, but you <em>will</em> make decisions that the product spec doesn't cover. If you're asked to build without a spec, you know how to develop one.</p>
+
+                <p>You have <strong>product sense</strong> that enables you to pick a direction meeting real user needs, without waiting for a PM to make every call. You have basic design sense — building things that aren't just functional but genuinely pleasant to use. You have some business sense too — thinking through go-to-market, market size, unit economics, and P&L to make economically sensible trade-offs.</p>
+
+                <p>Your ability to make product decisions is rooted in <strong>user empathy</strong> — which you continuously refine through informal user interviews, surveys, A/B tests, and behavioural data analysis.</p>
+
+                <h3>Communicating and Leading</h3>
+                <p>AI Engineering skills enable you to participate in a <strong>much broader scope of work</strong> than traditional development allowed. Just as front-end devs are becoming full-stack, AI Engineering opens the door to expanding your scope even further — into marketing, finance, legal, and other functions that affect your project.</p>
+
+                <p>This makes your communication skills more important than ever. You can play a key role in aligning stakeholders and moving projects forward. And because AI is evolving rapidly, many non-technical colleagues are trying to understand the technology and its impact. Your technical knowledge puts you in a unique position to <strong>shape perspectives and lead your organisation forward</strong> — for example, by explaining why certain initiatives are technically feasible (or not).</p>
+
+                <h3>High-Agency Ownership</h3>
+                <p>AI engineering skills give you vast opportunities to make a difference. But here's the reality: many people — including some executives — don't yet fully understand what AI can do. This creates a <strong>massive opening for someone with technical skill</strong> to bridge the gap.</p>
+
+                <p>You can spot problems, propose solutions, and execute — being respectful of organisational priorities and constraints, but without waiting for precise top-down direction. This requires a high degree of agency: identifying opportunities, prioritising what matters, and acting on them. You know how to own an initiative end-to-end, take accountability, act in ambiguity, persist through setbacks, and measure your work not just by task completion, but by the <strong>value you actually create</strong>.</p>
+
+                <div class="takeaway-card">
+                    <h4>🎯 Final Takeaway</h4>
+                    <p>Invest in improving your skills continuously. Track the technology frontier, pick up new tools, tune your workflows, and keep learning — <strong>so you become better over time</strong>. The most exciting part of AI Engineering isn't what it can do today — it's what you'll be able to build tomorrow.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <h2>The Journey Never Stops</h2>
+            <p>Underlying all these skills is a mindset of <strong>continuous learning</strong>. AI continues to change at a breakneck pace, which means we all need to keep learning, experimenting, and evolving our skills to stay on top of emerging best practices.</p>
+            <p>As AI Engineering continues to mature, the opportunities for what we can build are genuinely extraordinary. Whether you're a first-year student or a seasoned developer — there's never been a more exciting time to be in this field.</p>
+            <div class="footer-divider"></div>
+            <p class="footer-copy">&copy; 2025 AI Engineering Skills Map. Based on the original writings by Andrew Ng. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+    </button>
+
+    <script>
+        // ==================== DARK MODE ====================
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeButton(newTheme);
+        }
+
+        function updateThemeButton(theme) {
+            const icon = document.getElementById('themeIcon');
+            const label = document.getElementById('themeLabel');
+            const btn = document.getElementById('darkModeBtn');
+            if (theme === 'dark') {
+                icon.innerHTML = '<circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>';
+                label.textContent = 'Light';
+                btn.classList.add('active');
+            } else {
+                icon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+                label.textContent = 'Dark';
+                btn.classList.remove('active');
+            }
+        }
+
+        // ==================== READING MODE ====================
+        function toggleReadingMode() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-reading');
+            const btn = document.getElementById('readingModeBtn');
+            if (current === 'comfort') {
+                html.removeAttribute('data-reading');
+                btn.classList.remove('active');
+                localStorage.removeItem('readingMode');
+            } else {
+                html.setAttribute('data-reading', 'comfort');
+                btn.classList.add('active');
+                localStorage.setItem('readingMode', 'comfort');
+            }
+        }
+
+        // ==================== PROGRESS BAR ====================
+        function updateProgressBar() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // ==================== ACTIVE NAV HIGHLIGHT ====================
+        function updateActiveNav() {
+            const sections = document.querySelectorAll('.article-section');
+            const navLinks = document.querySelectorAll('.section-nav a');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 160;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                    // Scroll the nav to show active link
+                    const navInner = document.querySelector('.section-nav-inner');
+                    const linkLeft = link.offsetLeft - navInner.offsetLeft;
+                    const linkWidth = link.offsetWidth;
+                    const navWidth = navInner.offsetWidth;
+                    const scrollLeft = linkLeft - (navWidth / 2) + (linkWidth / 2);
+                    navInner.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                }
+            });
+        }
+
+        // ==================== BACK TO TOP ====================
+        function updateBackToTop() {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 500) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        }
+
+        // ==================== TOC DRAWER ====================
+        function openToc() {
+            document.getElementById('tocOverlay').style.display = 'block';
+            requestAnimationFrame(() => {
+                document.getElementById('tocOverlay').classList.add('open');
+                document.getElementById('tocDrawer').classList.add('open');
+            });
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeToc() {
+            document.getElementById('tocOverlay').classList.remove('open');
+            document.getElementById('tocDrawer').classList.remove('open');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                document.getElementById('tocOverlay').style.display = 'none';
+            }, 350);
+        }
+
+        // ==================== SCROLL HANDLER ====================
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateProgressBar();
+                    updateActiveNav();
+                    updateBackToTop();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+
+        // ==================== INIT ====================
+        document.addEventListener('DOMContentLoaded', () => {
+            // Restore theme
+            const savedTheme = localStorage.getItem('theme') ||
+                (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateThemeButton(savedTheme);
+
+            // Restore reading mode
+            const savedReading = localStorage.getItem('readingMode');
+            if (savedReading === 'comfort') {
+                document.documentElement.setAttribute('data-reading', 'comfort');
+                document.getElementById('readingModeBtn').classList.add('active');
+            }
+
+            // Initial updates
+            updateProgressBar();
+            updateActiveNav();
+            updateBackToTop();
+        });
+
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const theme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', theme);
+                updateThemeButton(theme);
+            }
+        });
+    </script>
+</body>
+</html>
