@@ -31,7 +31,7 @@ Each section is written in student-friendly language, with practical examples an
 
 ## 🌐 Live Demo
 
-👉 **[Read the guide here](https://Aeronutist.github.io/ai-engineering-skills-map/)**
+👉 **[Read the guide here](https://aeronutist.github.io/ai-engineering-skills-map/)**
 
 ---
 
@@ -52,7 +52,7 @@ Open `index.html` in any browser.
 1. Fork this repo
 2. Go to **Settings → Pages**
 3. Set source to `main` branch, root folder
-4. Your site is live at `https://Aeronutist.github.io/ai-engineering-skills-map/`
+4. Your site is live at `https://aeronutist.github.io/ai-engineering-skills-map/`
 
 ### Option 3: Embed it
 Copy the HTML and embed it in your own blog (Blogger, WordPress, Notion, etc.)
