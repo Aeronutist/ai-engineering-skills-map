@@ -879,6 +879,70 @@
             body { background: #fff; }
             .content-wrapper { max-width: 100%; }
         }
+                /* ==================== ASK AI BUTTON ==================== */
+        .ask-ai-button {
+            position: fixed;
+            bottom: 32px;
+            left: 32px;
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1px;
+            cursor: pointer;
+            border: none;
+            box-shadow: var(--shadow-lg);
+            text-decoration: none;
+            z-index: 900;
+            transition: all 0.3s ease;
+        }
+
+        .ask-ai-button:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+            background: var(--accent-light);
+        }
+
+        .ask-ai-button svg {
+            width: 25px;
+            height: 25px;
+        }
+
+        .ask-ai-label {
+            font-size: 0.50rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 768px) {
+            .ask-ai-button {
+                bottom: 20px;
+                left: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            .ask-ai-button svg {
+                width: 21px;
+                height: 21px;
+            }
+
+            .ask-ai-label {
+                font-size: 0.45rem;
+            }
+        }
+
+        @media print {
+            .ask-ai-button {
+                display: none !important;
+            }
+            }
     </style>
 </head>
 <body>
@@ -1268,6 +1332,19 @@
             <p class="footer-copy">&copy; 2025 AI Engineering Skills Map. Based on the original writings by Andrew Ng. All rights reserved.</p>
         </div>
     </footer>
+        <!-- Ask AI Button -->
+    <button class="ask-ai-button" onclick="askAI()" aria-label="Ask AI" title="Ask AI about this blog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="5" y="6" width="14" height="13" rx="3"/>
+            <path d="M9 6V4a3 3 0 016 0v2"/>
+            <circle cx="9" cy="12" r="1"/>
+            <circle cx="15" cy="12" r="1"/>
+            <path d="M9 16h6"/>
+            <path d="M2 10v4"/>
+            <path d="M22 10v4"/>
+        </svg>
+        <span class="ask-ai-label">Ask ChatGPT</span>
+    </button>
 
     <!-- Back to Top Button -->
     <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
@@ -1423,7 +1500,15 @@
                 document.documentElement.setAttribute('data-theme', theme);
                 updateThemeButton(theme);
             }
-        });
+        });        // ==================== ASK AI ====================
+        function askAI() {
+            const blogUrl = window.location.href;
+            const prompt = blogUrl + "\n\nExplain this blog in simple terms.";
+
+            const chatGPTUrl = 'https://chatgpt.com/?q=' + encodeURIComponent(prompt);
+
+            window.location.href = chatGPTUrl;
+        }
     </script>
 </body>
 </html>
